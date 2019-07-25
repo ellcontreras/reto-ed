@@ -27,7 +27,7 @@ func HandleOption() {
 	case 3:
 		actions.Create()
 	case 4:
-		fmt.Println(4)
+		actions.Update()
 	case 5:
 		fmt.Println(5)
 	}
