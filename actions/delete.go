@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/ashwanthkumar/slack-go-webhook"
 	"github.com/fatih/color"
 )
 
@@ -28,6 +29,20 @@ func Delete() {
 
 	if response.StatusCode == 200 {
 		fmt.Println("Se ha eliminado con exito!")
+
+		attachment1 := slack.Attachment{}
+		attachment1.AddField(slack.Field{Title: "Author", Value: "Luis Contreras"}).AddField(slack.Field{Title: "Hey", Value: "Se ha creado una foto!"})
+		payload := slack.Payload{
+			Text:        "Se ha creado una foto en el API",
+			Username:    "robot",
+			Channel:     "#general",
+			IconEmoji:   ":monkey_face:",
+			Attachments: []slack.Attachment{attachment1},
+		}
+		er := slack.Send(webhookUrl, "", payload)
+		if len(er) > 0 {
+			fmt.Printf("error: %s\n", err)
+		}
 	} else {
 		panic("HA ocurrido un error al tratar de eliminar la foto")
 	}
