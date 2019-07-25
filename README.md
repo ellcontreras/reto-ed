@@ -7,24 +7,6 @@
 
 > Reto de EDteam
 
-## Install
-
-```sh
- 
-```
-
-## Usage
-
-```sh
- 
-```
-
-## Run tests
-
-```sh
- 
-```
-
 ## Author
 
 👤 **Luis Contreras Guerra**
