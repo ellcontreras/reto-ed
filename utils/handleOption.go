@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/Obsinqsob01/reto-ed/actions"
@@ -29,6 +28,8 @@ func HandleOption() {
 	case 4:
 		actions.Update()
 	case 5:
-		fmt.Println(5)
+		actions.Delete()
+	default:
+		panic("La opción ingresada no es correcta!")
 	}
 }
