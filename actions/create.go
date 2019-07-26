@@ -7,8 +7,11 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/ashwanthkumar/slack-go-webhook"
 	"github.com/fatih/color"
 )
+
+const webhookUrl = "https://hooks.slack.com/services/foo/bar/baz"
 
 // Create crea una foto
 func Create() {
@@ -41,4 +44,18 @@ func Create() {
 
 	data, _ := ioutil.ReadAll(response.Body)
 	fmt.Println(string(data))
+
+	attachment1 := slack.Attachment{}
+	attachment1.AddField(slack.Field{Title: "Author", Value: "Luis Contreras"}).AddField(slack.Field{Title: "Hey", Value: "Se ha creado una foto!"})
+	payload := slack.Payload{
+		Text:        "Se ha creado una foto en el API",
+		Username:    "robot",
+		Channel:     "#general",
+		IconEmoji:   ":yum:",
+		Attachments: []slack.Attachment{attachment1},
+	}
+	er := slack.Send(webhookUrl, "", payload)
+	if len(er) > 0 {
+		fmt.Printf("error: %s\n", err)
+	}
 }
